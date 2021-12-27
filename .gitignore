@@ -27,3 +27,6 @@ yarn-error.log*
 /yarn.lock
 
 /package-lock.json
+
+# typechain
+contracts/types/

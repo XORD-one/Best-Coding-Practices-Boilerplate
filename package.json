@@ -5,14 +5,17 @@
   "cracoConfig": "craco.config.js",
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@ethersproject/providers": "^5.5.1",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@typechain/ethers-v5": "^8.0.5",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.20",
+    "ethers": "^5.5.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
@@ -22,10 +25,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "start": "npm run typechain & craco start",
+    "build": "npm run typechain & craco build",
+    "test": "npm run typechain & craco test",
+    "eject": "react-scripts eject",
+    "typechain": "typechain --target ethers-v5 --out-dir ./src/contracts/types './src/contracts/*.json'"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.37"
+    "@types/react": "^17.0.37",
+    "typechain": "^6.1.0"
   }
 }

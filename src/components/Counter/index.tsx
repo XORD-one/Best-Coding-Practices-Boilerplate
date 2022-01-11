@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@hooks';
+import { useAppDispatch, useAppSelector } from '@hooks/index';
 import { updateCounterValue } from '@redux/slices/counterSlice/counter.actions';
 import { FC } from 'react';
 

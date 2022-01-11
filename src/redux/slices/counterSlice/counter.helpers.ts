@@ -1,6 +1,6 @@
-export const incrementCounterValue = (prevValue: number) => {
+export const incrementCounterValue = (prevValue: number): number => {
   return prevValue + 1;
 };
-export const decrementCounterValue = (prevValue: number) => {
+export const decrementCounterValue = (prevValue: number): number => {
   return prevValue - 1;
 };

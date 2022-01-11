@@ -1,5 +1,5 @@
 import { setValue } from '.';
-import { RootState } from '../../configureStore';
+import { AppDispatch, RootState } from '../../configureStore';
 import {
   decrementCounterValue,
   incrementCounterValue,
@@ -7,7 +7,8 @@ import {
 
 // an action
 export const updateCounterValue =
-  (type: string) => async (dispatch: any, getState: () => RootState) => {
+  (type: string) =>
+  async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
     try {
       const store = getState();
 

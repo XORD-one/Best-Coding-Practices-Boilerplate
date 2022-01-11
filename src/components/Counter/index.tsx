@@ -1,11 +1,10 @@
 import { useAppDispatch, useAppSelector } from '@hooks/index';
 import { updateCounterValue } from '@redux/slices/counterSlice/counter.actions';
-import { FC } from 'react';
-
+import React, { FC } from 'react';
 import './styles.scss';
 // import './styles.css';
 
-type Props = {};
+type Props = Record<string, unknown>;
 
 const Counter: FC<Props> = () => {
   const counterValue = useAppSelector(state => state.counter.value);

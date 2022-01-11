@@ -1,10 +1,9 @@
-import Counter from "@components/Counter";
-import Stake from "@components/Stake";
-import { FC } from "react";
+import Counter from '@components/Counter';
+import Stake from '@components/Stake';
+import React, { FC } from 'react';
+import './styles.scss';
 
-import "./styles.scss";
-
-type Props = {};
+type Props = Record<string, unknown>;
 
 const App: FC<Props> = () => {
   return (

@@ -1,4 +1,7 @@
-const path = require('path');
+const path = require('path')
+const { pathsToModuleNameMapper } = require('ts-jest')
+const { ESLINT_MODES } = require('@craco/craco')
+const { compilerOptions } = require('./tsconfig.path.json')
 
 module.exports = {
   webpack: {
@@ -13,4 +16,16 @@ module.exports = {
       '@contracts': path.resolve(__dirname, 'src/contracts'),
     },
   },
-};
+  jest: {
+    configure: {
+      preset: 'ts-jest',
+      moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+        prefix: '<rootDir>/src/',
+      }),
+    },
+  },
+  eslint: {
+    mode: ESLINT_MODES.file,
+  },
+  babel: { plugins: ['transform-remove-console'] },
+}

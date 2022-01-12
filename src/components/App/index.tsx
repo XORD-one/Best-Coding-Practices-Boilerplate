@@ -1,9 +1,9 @@
-import Counter from '@components/Counter';
-import Stake from '@components/Stake';
-import React, { FC } from 'react';
-import './styles.scss';
+import Counter from '@components/Counter'
+import Stake from '@components/Stake'
+import React, { FC } from 'react'
+import './styles.scss'
 
-type Props = Record<string, unknown>;
+type Props = Record<string, unknown>
 
 const App: FC<Props> = () => {
   return (
@@ -12,7 +12,7 @@ const App: FC<Props> = () => {
       <Counter />
       <Stake />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

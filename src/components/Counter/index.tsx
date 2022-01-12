@@ -8,7 +8,7 @@ import './styles.scss'
 type Props = Record<string, unknown>
 
 const Counter: FC<Props> = () => {
-  const counterValue = useAppSelector((state) => state.counter.value)
+  const counterValue = useAppSelector(state => state.counter.value)
   const dispatch = useAppDispatch()
 
   return (

@@ -1,4 +1,5 @@
 import Counter from '@components/Counter'
+import JestDemo from '@components/JestDemo'
 import Stake from '@components/Stake'
 import React, { FC } from 'react'
 import './styles.scss'
@@ -11,6 +12,7 @@ const App: FC<Props> = () => {
       <h4>Counter App</h4>
       <Counter />
       <Stake />
+      <JestDemo id="2" />
     </div>
   )
 }

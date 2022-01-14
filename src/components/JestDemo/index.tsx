@@ -1,25 +1,38 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 
-type Props = { id?: string };
+type Props = { id?: string }
 
 const JestDemo: FC<Props> = props => {
-  const [user, setUser] = useState<{ age: number; name: string } | null>(null);
-
-  async function fetchUser(id: string): Promise<void> {
-    const response = await fetch('/' + id);
-    setUser(await response.json());
-  }
+  const [user, setUser] = useState<{ name: string } | null>(null)
+  const [value, setValue] = useState<string>('')
 
   useEffect(() => {
-    if (props.id) fetchUser(props.id);
-  }, [props.id]);
+    if (props.id) fetchUser(props.id)
+  }, [props.id])
+
+  async function fetchUser(id: string): Promise<void> {
+    const response = await fetch(
+      'https://jsonplaceholder.typicode.com/users/' + id,
+    )
+    const data = await response.json()
+    setUser(() => ({
+      name: data.name,
+    }))
+  }
+  function onChange(e: ChangeEvent<HTMLInputElement>): void {
+    setValue(e.target.value)
+  }
 
   return (
     <div className="container">
-      <h1>{user?.name}</h1>
-      <h2>{user?.age}</h2>
+      {user ? (
+        <h1>User name is: {user?.name}</h1>
+      ) : (
+        <h2>user is not logged in</h2>
+      )}
+      <input type="text" value={value} onChange={onChange} />
     </div>
-  );
-};
+  )
+}
 
-export default JestDemo;
+export default JestDemo

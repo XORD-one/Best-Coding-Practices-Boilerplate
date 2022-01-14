@@ -8,6 +8,7 @@ package-lock.json
 yarn.lock
 .gitignore
 react-app-env.d.ts
+*.test.tsx
 
 /public
 /node_modules

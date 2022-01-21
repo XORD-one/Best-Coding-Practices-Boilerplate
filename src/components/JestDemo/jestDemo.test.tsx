@@ -72,7 +72,9 @@ describe('JestDemo', () => {
   })
 
   test('user is rendered', async () => {
-    render(<JestDemo id="2" />)
+    const cb = jest.fn()
+
+    render(<JestDemo id="2" onChange={cb} />)
 
     await screen.findByText(/User name is/)
 
@@ -81,5 +83,7 @@ describe('JestDemo', () => {
         value: 'Joni Baez',
       },
     })
+
+    expect(cb).toHaveBeenCalled()
   })
 })

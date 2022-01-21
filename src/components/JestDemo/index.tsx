@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 
-type Props = { id?: string }
+type Props = { id?: string; onChange?: () => void }
 
 const JestDemo: FC<Props> = props => {
   const [user, setUser] = useState<{ name: string } | null>(null)
@@ -21,6 +21,7 @@ const JestDemo: FC<Props> = props => {
   }
   function onChange(e: ChangeEvent<HTMLInputElement>): void {
     setValue(e.target.value)
+    props.onChange && props.onChange()
   }
 
   return (

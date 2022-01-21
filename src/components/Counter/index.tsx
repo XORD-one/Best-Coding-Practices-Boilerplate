@@ -1,27 +1,31 @@
+// * Contains Business Logic and returns view component
+import React, { FC } from 'react'
+
 import { useAppDispatch, useAppSelector } from '@hooks/index'
 import { updateCounterValue } from '@redux/slices/counterSlice/counter.actions'
-import React, { FC } from 'react'
-import images from '@assets/'
+import CounterView from '@components/Counter/view'
+
 import './styles.scss'
-// import './styles.css';
 
-type Props = Record<string, unknown>
+export interface CounterProps {
+  title?: string
+}
 
-const Counter: FC<Props> = () => {
+const Counter: FC<CounterProps> = ({ title = 'Counter Compo' }) => {
   const counterValue = useAppSelector(state => state.counter.value)
   const dispatch = useAppDispatch()
 
   return (
-    <div className="container">
-      <img src={images.NFTImage} />
-      <button onClick={() => dispatch(updateCounterValue('inc'))}>
-        Increment
-      </button>
-      <button onClick={() => dispatch(updateCounterValue('dec'))}>
-        Decrement
-      </button>
-      <p>counterValue = {counterValue}</p>
-    </div>
+    <CounterView
+      title={title}
+      counterValue={counterValue}
+      onIncrementPress={() => {
+        dispatch(updateCounterValue('inc'))
+      }}
+      onDecrementPress={() => {
+        dispatch(updateCounterValue('dec'))
+      }}
+    />
   )
 }
 

@@ -27,5 +27,4 @@ module.exports = {
   eslint: {
     mode: ESLINT_MODES.file,
   },
-  babel: { plugins: ['transform-remove-console'] },
 }

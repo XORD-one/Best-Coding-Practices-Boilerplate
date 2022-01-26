@@ -1,1 +1,1 @@
-export const getRandomNumber = () => Math.random();
+export const getRandomNumber = () => Math.random()

@@ -32,6 +32,7 @@
     "test": "npm run typechain & craco test",
     "eject": "react-scripts eject",
     "lint": "npx eslint .  --quiet --fix",
+    "prepare": "husky install",
     "typechain": "typechain --target ethers-v5 --out-dir ./src/contracts/types './src/contracts/*.json'"
   },
   "eslintConfig": {
@@ -64,6 +65,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
+    "husky": "^7.0.0",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.2",
     "typechain": "^6.1.0"

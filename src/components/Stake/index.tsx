@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import {
   Erc20__factory,
   DaoEventsV2__factory,
-  PHXStake__factory,
+  // PHXStake__factory,
 } from '@contracts/types/index'
 
 const Stake: FC = () => {
@@ -90,8 +90,8 @@ const Stake: FC = () => {
       console.log(accounts[0])
 
       // Network & Chain ID
-      const network = await provider.getNetwork()
-      const chainId = network.chainId
+      // const network = await provider.getNetwork()
+      // const chainId = network.chainId
 
       // Balance
       const address = account
@@ -106,7 +106,7 @@ const Stake: FC = () => {
       // Convert (Wei -> Ether)
       // const address = '0x28d319067E209fa43Ef46bF54343Dae4CEDd3824'
       // const balanceBigNumber = await ethers.providers.getBalance(address)
-      const balanceEth = ethers.utils.formatEther(balance.toString())
+      // const balanceEth = ethers.utils.formatEther(balance.toString())
       console.log(`user balance: ${balance} Ether`)
 
       // setDummy(balanceEth)

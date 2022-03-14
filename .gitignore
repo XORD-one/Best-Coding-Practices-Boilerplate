@@ -30,3 +30,5 @@ yarn-error.log*
 
 # typechain
 contracts/types/
+
+request.http

@@ -7,9 +7,14 @@ package.json
 package-lock.json
 yarn.lock
 .gitignore
+.vscode
 react-app-env.d.ts
 *.test.tsx
+*.css
+*.svg
 
 /public
 /node_modules
 /contracts
+/build
+/public

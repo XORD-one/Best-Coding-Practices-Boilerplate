@@ -1,19 +1,41 @@
-const path = require('path')
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { pathsToModuleNameMapper } = require('ts-jest')
 const { ESLINT_MODES } = require('@craco/craco')
 const { compilerOptions } = require('./tsconfig.path.json')
+const path = require('path')
 
 module.exports = {
   webpack: {
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
-      '@nativeComponents': path.resolve(__dirname, 'src/native components'),
       '@redux': path.resolve(__dirname, 'src/redux'),
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@api': path.resolve(__dirname, 'src/api'),
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@contracts': path.resolve(__dirname, 'src/contracts'),
+    },
+    configure: (webpackConfig, { env, paths }) => {
+      return {
+        ...webpackConfig,
+        entry: {
+          main: [
+            env === 'development' &&
+              require.resolve('react-dev-utils/webpackHotDevClient'),
+            paths.appIndexJs,
+          ].filter(Boolean),
+          background: './src/background.ts',
+        },
+        output: {
+          ...webpackConfig.output,
+          filename: 'static/js/[name].js',
+        },
+        optimization: {
+          ...webpackConfig.optimization,
+          runtimeChunk: false,
+        },
+      }
     },
   },
   jest: {

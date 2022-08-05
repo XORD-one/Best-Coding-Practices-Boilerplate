@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { ethers } from 'ethers'
 import {
   Erc20__factory,
-  DaoEventsV2__factory,
+  // DaoEventsV2__factory,
   // PHXStake__factory,
 } from '@contracts/types/index'
 
@@ -16,21 +16,19 @@ const Stake: FC = () => {
   const [dummy, setDummy] = useState<any>('0')
 
   const connect = async () => {
-    if (!window.ethereum?.request) {
-      alert('MetaMask is not installed!')
-      return
-    }
-
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    // const provider = new ethers.providers.JsonRpcProvider(
-    //   'https://eth-rinkeby.alchemyapi.io/v2/QqePo-cZyepMXoMuqlHZFBFVjUMyUHw6',
-    // )
-    const accounts = await window.ethereum.request({
-      method: 'eth_requestAccounts',
-    })
-
-    setProvider(provider)
-    setAccount(accounts[0])
+    // if (!window.ethereum?.request) {
+    //   alert('MetaMask is not installed!')
+    //   return
+    // }
+    // const provider = new ethers.providers.Web3Provider(window.ethereum)
+    // // const provider = new ethers.providers.JsonRpcProvider(
+    // //   'https://eth-rinkeby.alchemyapi.io/v2/QqePo-cZyepMXoMuqlHZFBFVjUMyUHw6',
+    // // )
+    // const accounts = await window.ethereum.request({
+    //   method: 'eth_requestAccounts',
+    // })
+    // setProvider(provider)
+    // setAccount(accounts[0])
   }
 
   const getTokenBalance = async () => {
@@ -52,35 +50,33 @@ const Stake: FC = () => {
   }
 
   const getEventCount = async () => {
-    if (provider && account) {
-      const TOKEN_ADDR = '0xa8b9A1dA93B4a96d9D0a464f6897A9A7D20c9874'
-      const contract = DaoEventsV2__factory.connect(
-        TOKEN_ADDR,
-        provider.getSigner(),
-      )
-
-      const rawCount = await contract.getEventsCount()
-      setEventsCount(rawCount.toString())
-    }
+    // if (provider && account) {
+    //   const TOKEN_ADDR = '0xa8b9A1dA93B4a96d9D0a464f6897A9A7D20c9874'
+    //   const contract = DaoEventsV2__factory.connect(
+    //     TOKEN_ADDR,
+    //     provider.getSigner(),
+    //   )
+    //   const rawCount = await contract.getEventsCount()
+    //   setEventsCount(rawCount.toString())
+    // }
   }
 
   const approvePHNX = async () => {
-    if (provider && account) {
-      console.log('approving PHNX')
-      const TOKEN_ADDR = '0xa8b9A1dA93B4a96d9D0a464f6897A9A7D20c9874'
-      const contract = DaoEventsV2__factory.connect(
-        TOKEN_ADDR,
-        provider.getSigner(),
-      )
-
-      const tx = await contract.changeToken(
-        '0xa8b9A1dA93B4a96d9D0a464f6897A9A7D20c9874',
-        { gasLimit: 25000 },
-      )
-      await tx.wait()
-      console.log('tx', tx)
-      setDummy(tx)
-    }
+    // if (provider && account) {
+    //   console.log('approving PHNX')
+    //   const TOKEN_ADDR = '0xa8b9A1dA93B4a96d9D0a464f6897A9A7D20c9874'
+    //   const contract = DaoEventsV2__factory.connect(
+    //     TOKEN_ADDR,
+    //     provider.getSigner(),
+    //   )
+    //   const tx = await contract.changeToken(
+    //     '0xa8b9A1dA93B4a96d9D0a464f6897A9A7D20c9874',
+    //     { gasLimit: 25000 },
+    //   )
+    //   await tx.wait()
+    //   console.log('tx', tx)
+    //   setDummy(tx)
+    // }
   }
 
   const tryEthers = async () => {

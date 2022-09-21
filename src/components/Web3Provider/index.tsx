@@ -1,22 +1,29 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import App from '@components/App'
-import { useAppSelector } from '@hooks/'
 import { Web3ReactHooks, Web3ReactProvider } from '@web3-react/core'
 import { Connector } from '@web3-react/types'
-import { getConnection } from '../../connection'
+import { Connection, getConnectionName } from '../../connection'
+import useOrderedConnections from '../../hooks/useOrderedConnections'
 
 type Props = unknown
 
 const Web3Provider: FC<Props> = () => {
-  const wallet = useAppSelector(state => state.wallet.selectedWallet)
+  const connections = useOrderedConnections()
 
-  const connection = getConnection(wallet)
-  const connectors: [Connector, Web3ReactHooks][] = [connection].map(
-    ({ connector, hooks }) => [connector, hooks],
+  const connectors: [Connector, Web3ReactHooks][] = connections.map(
+    ({ hooks, connector }) => [connector, hooks],
+  )
+
+  const key = useMemo(
+    () =>
+      connections
+        .map(({ type }: Connection) => getConnectionName(type))
+        .join('-'),
+    [connections],
   )
 
   return (
-    <Web3ReactProvider connectors={connectors} key={'metamask'}>
+    <Web3ReactProvider connectors={connectors} key={key}>
       <App />
     </Web3ReactProvider>
   )

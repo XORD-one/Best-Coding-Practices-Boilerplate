@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { SupportedWallets } from '../../connection'
+import { ConnectionType, SupportedWallets } from '../../connection'
 import { Ember, Erc20, Kolnet } from '@contracts/types'
 import { useWeb3React } from '@web3-react/core'
 import { AvailableContracts } from '../../hooks/useContract/types'
@@ -33,7 +33,9 @@ const App: FC<Props> = () => {
       <Counter {...counterProps} />
       <Stake />
       <JestDemo id="2" /> */}
-      <WalletButtons wallets={[SupportedWallets.METAMASK]} />
+      <WalletButtons
+        wallets={[ConnectionType.INJECTED, ConnectionType.WALLET_CONNECT]}
+      />
       <button onClick={tryTransfer}>send</button>
     </div>
   )

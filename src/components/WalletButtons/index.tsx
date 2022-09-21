@@ -7,12 +7,15 @@ import {
 } from '../../connection'
 import { useAppDispatch } from '@hooks/'
 import { setSelectedWallet } from '@redux/slices/walletSlice'
+import { useWeb3React } from '@web3-react/core'
 
 type Props = {
   wallets: ConnectionType[]
 }
 
 const WalletButtons: FC<Props> = props => {
+  const { account, connector } = useWeb3React()
+
   const dispatch = useAppDispatch()
 
   const tryActivation = useCallback(
@@ -42,18 +45,27 @@ const WalletButtons: FC<Props> = props => {
     [dispatch],
   )
 
+  function onDisconnectClick() {
+    connector.deactivate && connector.deactivate()
+    connector.resetState && connector.resetState()
+  }
+
   return (
     <div className="buttons_container">
-      {props.wallets.map(walletType => {
-        return (
-          <button
-            onClick={() => tryActivation(getConnection(walletType).connector)}
-            key={walletType}
-          >
-            Connect {getConnectionName(walletType)}
-          </button>
-        )
-      })}
+      {!account ? (
+        props.wallets.map(walletType => {
+          return (
+            <button
+              onClick={() => tryActivation(getConnection(walletType).connector)}
+              key={walletType}
+            >
+              Connect {getConnectionName(walletType)}
+            </button>
+          )
+        })
+      ) : (
+        <button onClick={onDisconnectClick}>Disconnect</button>
+      )}
     </div>
   )
 }
